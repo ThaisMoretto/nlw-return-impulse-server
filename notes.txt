@@ -87,4 +87,4 @@ cors = forma de fazer controle de segurança no back para nao permitir front ina
 
 Como se fosse a Vercel, mas para projetos de todos os tipos. Semelhante ao Heroku
 https://railway.app/
-DEPLOY = 
+DEPLOY = https://nlw-return-impulse-server-production-e5af.up.railway.app/
