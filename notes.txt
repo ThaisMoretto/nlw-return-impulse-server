@@ -84,3 +84,7 @@ spies = espiões que permitem sabermos se alguma função foi chamada
 npm i cors
 npm i @types/cors -D
 cors = forma de fazer controle de segurança no back para nao permitir front inadequados de acessar as informações do nosso backend. É possível dizer quais endereços de front podem consumir o back
+
+Como se fosse a Vercel, mas para projetos de todos os tipos. Semelhante ao Heroku
+https://railway.app/
+DEPLOY = 
