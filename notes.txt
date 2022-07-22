@@ -1,0 +1,86 @@
+npm init -y
+Como não usaremos framework, usamos esse comando para criar o package.json
+
+npm i typescript @types/node ts-node-dev -D
+Instalação do typescript
+@types/node tipagens específicas do ecossistema do node
+ts-node-dev é equivalente ao nodemon porém, integra com o typescript e então, toda vez que tiver uma alteração em um arquivo ts, ele reinicia o servidor node, assim teremos um live-reload, alterações em tempo real
+
+npx typescript --init OU npx tsc --init
+Para criar o arquivo tsconfig.json
+
+No tsconfig.json pode alterar o target para uma versão mais autal pois os browsers suportam. Isso ajuda no processo de compilação da aplicação
+"target": "es2020" 
+
+"rootDir": "./src"
+"outDir": "./dist" = diretório onde os arquivos compilados irão aparecer ao rodar o npx tsc
+
+express
+npm i express
+npm i -D @types/express
+biblioteca que não tras muita opnião de como construimos nossas coisas, ele é um mini framework para trabalhar com a parte HTTP do servidor backend
+ele vai trazer a parte de rotas na nossa aplicação. esse é o seu grande core
+
+Fala para o express que o objeto no body será json. Middleware, um pluggin
+app.use(express.json());
+
+testar endpoint no terminal através do curl:
+curl http://localhost:3333/users
+
+backend banco de dados com SQLite
+
+https://www.prisma.io/
+npm i prisma -D = usa apenas no ambiente de dev
+npm i @prisma/client = usa em prod
+npx prisma init = cria a pasta prisma e os arquivos .env (DATABASE_URL="file:./dev.db") e .gitignore
+Prisma é um ORM que facilita o trabalho com banco de dados. É uma ferramenta que muda a forma como nos comunicamos com o banco de dados, ao invés de escrever querys SQL, escrevemos código JS
+Ganhos: se quiser trocar o BD, não precisa mudar nada na aplicação pois ele suporta múltiplos BDs
+
+criar tabela no ambiente de desenvolvimento: npx prisma migrate dev 
+cria a pasta migrations. Migrations é uma forma de manter um controle de versão do BD uma a uma. Faclita desfazer algo e não é necessário acessar o BD em prod para fazer criação de tabela etc. as migrations criadas no ambiente de desenvolvimento são executadas ao ir para o ambiente de prod e todas as tabelas serão geradas automaticamente.
+
+criar tabela no ambiente de produção: npx prisma migrate deploy
+
+npx prisma studio = abre no browser uma interface para navegar entre as tabelas
+
+Enviar emails:
+npm i nodemailer
+npm i @types/nodemailer -D
+Serviço de envios de email = mailtrap: serviço para testar envios de email. Cira sua conta gratuita, cria uma nova inbox 
+
+Princípios SOLID: utilizados para manter o código mais testáve, escalável e manutenível
+
+1- Single responsability principle:
+    Cada classe/função tem uma responsabilidade única
+    Não devem executar mais de uma regra de negócio
+    Como saber se está ferindo o princípio: quando vc explica para alguem e no meio vc utiliza o E, a função faz isso E aquilo. Função está fazendo mais de uma coisa
+
+2- Open/Closed principle:
+    Classes da aplicação devem ser abertas para extensão mas fechadas para modificação
+    classes que extendem uma outra classe não poderiam conseguir modificar o funcionamento da classe original e sim, apenas extender
+
+3- Liscov substitution principle: 
+    Nós devemos poder substituir uma classe pai por uma herança dela e tudo continuar funcionando
+    As heranças devem incorporar o funcionamento da classe pai
+
+4- Interface segregation principle:
+    Segregar as interfaces o máximo possível
+
+5- Dependency inversion principle:
+    Forma de inverter as dependencias da classe/funcao
+    Ao invés da classe buscar as dependencias das quais ela precisa, o contexto externo a ela fala para ela quais sao as dependencias que ela utilizará
+
+
+JEST
+npm i jest -D
+npx jest --init
+npm i ts-node -D = jest com extenção ts
+npm i @types/jest -D = tipagens do jest
+
+swc = compiler para JS ou TS. Usar apenas para rodar os testes por enquanto
+
+spies = espiões que permitem sabermos se alguma função foi chamada
+
+npm i cors
+npm i @types/cors -D
+cors = forma de fazer controle de segurança no back para nao permitir front inadequados de acessar as informações do nosso backend. É possível dizer quais endereços de front podem consumir o back
