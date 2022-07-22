@@ -99,5 +99,7 @@
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
-  }
+  },
+  /* Na conversão de ts para js, inclui apenas os arquivos que estao na pasta src */
+  "include": ["src"]
 }
